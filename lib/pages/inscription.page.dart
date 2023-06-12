@@ -36,7 +36,6 @@ class _InscriptionPageState extends State<InscriptionPage> {
         ),
       );
     } else {
-      // Perform form submission logic or any necessary actions here
 
       // Reset the text fields
       _usernameController.clear();
@@ -50,7 +49,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
     }
   }
 
-  void _saveUserCredentials(String username, String password, bool connecte) async {
+  Future <void> _saveUserCredentials(String username, String password, bool connecte) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('username', username);
     prefs.setString('password', password);
