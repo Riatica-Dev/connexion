@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'pagedetails.dart';
 
 class PaysPage extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _PaysPageState extends State<PaysPage> {
           setState(() {
             countries = data;
             filteredCountries = data;
+
           });
         } else {
           print('Invalid data format: $data');
@@ -37,7 +39,6 @@ class _PaysPageState extends State<PaysPage> {
       print('Error while fetching countries: $error');
     }
   }
-
   void filterCountries(String query) {
     if (query.isNotEmpty) {
       setState(() {
@@ -84,6 +85,16 @@ class _PaysPageState extends State<PaysPage> {
                     return ListTile(
                       title: Text(name['common'] ?? ''),
                       subtitle: Text('Capital: ${capital[0] ?? ''}'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PaysDetailsPage(countryData: filteredCountries[index]),
+                          ),
+                        );
+                      },
+
+
 
                     );
                   } else {
